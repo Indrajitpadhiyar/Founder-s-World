@@ -26,7 +26,7 @@ export const Login = () => {
       if (isRegister) {
         const success = await signup(username, email, password);
         if (success) {
-          addNotification('Welcome!', 'Your account has been created successfully. Starting with $100 starting funds!', 'success');
+          addNotification('Account Created', 'Welcome to the Funder World. Select your home location to begin.', 'success');
         }
       } else {
         const success = await login(email, password);

@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { calculateDemand, calculateDailySales, tickStockPrice, POTENTIAL_EVENTS, INDUSTRY_PARAMS, BUSINESS_TEMPLATES } from '../utils/economy';
 
 const INITIAL_COUNTRIES = [
+  { id: 'in', name: 'India', flag: 'IN', taxRate: 0.25, laborCostFactor: 0.65, rawMaterialCostFactor: 0.75, unlocked: true, unlockCost: 0 },
   { id: 'us', name: 'United States', flag: '🇺🇸', taxRate: 0.21, laborCostFactor: 1.0, rawMaterialCostFactor: 1.0, unlocked: true, unlockCost: 0 },
   { id: 'cn', name: 'China', flag: '🇨🇳', taxRate: 0.15, laborCostFactor: 0.5, rawMaterialCostFactor: 0.7, unlocked: false, unlockCost: 100000 },
   { id: 'de', name: 'Germany', flag: '🇩🇪', taxRate: 0.3, laborCostFactor: 1.2, rawMaterialCostFactor: 1.1, unlocked: false, unlockCost: 250000 },
@@ -95,6 +96,8 @@ export const useGameStore = create((set, get) => ({
   activeEvents: [],
   economyPhase: 'Normal',
   countries: INITIAL_COUNTRIES,
+  needsOnboarding: false,
+  homeLocation: null,
 
   // Actions - Authentication
   login: async (email, password) => {
@@ -136,7 +139,15 @@ export const useGameStore = create((set, get) => ({
       if (!response.ok || !data.success) {
         throw new Error(data.message || 'Registration failed');
       }
-      return await get().login(email, password);
+      const success = await get().login(email, password);
+      if (success) {
+        set({
+          currentTab: 'World Map',
+          needsOnboarding: true,
+          homeLocation: null,
+        });
+      }
+      return success;
     } catch (e) {
       console.error(e);
       throw e;
@@ -240,6 +251,19 @@ export const useGameStore = create((set, get) => ({
     }));
 
     get().addNotification('Market Expanded', `Unlocked operations in ${country.name}!`, 'success');
+  },
+
+  completeOnboarding: (location) => {
+    set((state) => ({
+      needsOnboarding: false,
+      homeLocation: location,
+      currentTab: 'World Map',
+      countries: state.countries.map((country) =>
+        country.id === 'in' ? { ...country, unlocked: true } : country
+      ),
+    }));
+    get().addNotification('Home Location Set', `${location.name}, ${location.state} is now your business home base.`, 'success');
+    get().saveGame();
   },
 
   // Actions - Products
@@ -1119,6 +1143,8 @@ export const useGameStore = create((set, get) => ({
         economyPhase: get().economyPhase,
         activeEvents: get().activeEvents,
         countries: get().countries,
+        needsOnboarding: get().needsOnboarding,
+        homeLocation: get().homeLocation,
         lastTickTime: now,
         lastDividendPaidMonth: get().lastDividendPaidMonth,
       };
@@ -1214,6 +1240,8 @@ export const useGameStore = create((set, get) => ({
           economyPhase: parsed.economyPhase || 'Normal',
           activeEvents: parsed.activeEvents || [],
           countries: parsed.countries || get().countries,
+          needsOnboarding: parsed.needsOnboarding || false,
+          homeLocation: parsed.homeLocation || null,
           lastTickTime: now,
           lastSaveTime: now,
           lastDividendPaidMonth: parsed.lastDividendPaidMonth || 0,
@@ -1275,6 +1303,8 @@ export const useGameStore = create((set, get) => ({
       economyPhase: 'Normal',
       notifications: [],
       countries: INITIAL_COUNTRIES,
+      needsOnboarding: false,
+      homeLocation: null,
     });
     get().addNotification('Game Reset', 'All progress deleted. Starting fresh business venture!', 'warning');
   },

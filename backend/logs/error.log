@@ -45,3 +45,7 @@
 [2026-06-27 18:03:43:343] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
 [2026-06-27 18:03:44:344] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
 [2026-06-27 18:15:42:1542] [[31merror[39m]: [31mRedis error: read ECONNRESET[39m
+[2026-06-28 10:38:27:3827] [[31merror[39m]: [31mDatabase seeding failed: Property validation failed: footTraffic: Path `footTraffic` (103) is more than maximum allowed value (100).[39m
+[2026-06-29 09:03:34:334] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
+[2026-06-29 09:47:44:4744] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
+[2026-06-29 09:47:44:4744] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m

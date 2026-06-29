@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useGameStore } from './store/useGameStore';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
+import OnboardingModal from './components/OnboardingModal';
 import Overview from './views/Overview';
 import Businesses from './views/Businesses';
 import Products from './views/Products';
@@ -18,7 +19,7 @@ import { X, Info, CheckCircle2, AlertTriangle, XCircle } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export const App = () => {
-  const { currentTab, player, tick, initializeGame, notifications, clearNotifications, isAuthenticated } = useGameStore();
+  const { currentTab, tick, initializeGame, notifications, clearNotifications, isAuthenticated, needsOnboarding } = useGameStore();
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // Load game state on mount
@@ -28,13 +29,13 @@ export const App = () => {
 
   // Main Ticker Engine
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || needsOnboarding) return;
     const timer = setInterval(() => {
       tick();
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [tick, isAuthenticated]);
+  }, [tick, isAuthenticated, needsOnboarding]);
 
   // Route View Tabs
   const renderView = () => {
@@ -156,6 +157,8 @@ export const App = () => {
           ))}
         </AnimatePresence>
       </div>
+
+      {needsOnboarding && <OnboardingModal />}
     </div>
   );
 };

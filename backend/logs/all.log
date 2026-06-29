@@ -132,3 +132,31 @@
 [2026-06-27 18:15:43:1543] [[32minfo[39m]: [32mRedis connected successfully and is ready.[39m
 [2026-06-27 18:16:35:1635] [[33mwarn[39m]: [33mMongoDB disconnected. Attempting to reconnect...[39m
 [2026-06-27 18:16:38:1638] [[32minfo[39m]: [32mMongoDB connected successfully.[39m
+[2026-06-28 10:38:24:3824] [[32minfo[39m]: [32mConnecting to MongoDB...[39m
+[2026-06-28 10:38:26:3826] [[32minfo[39m]: [32mMongoDB connected successfully.[39m
+[2026-06-28 10:38:26:3826] [[32minfo[39m]: [32mConnecting to Redis...[39m
+[2026-06-28 10:38:26:3826] [[32minfo[39m]: [32mRedis connecting...[39m
+[2026-06-28 10:38:26:3826] [[32minfo[39m]: [32m🌍 Seeding 20 Indian cities...[39m
+[2026-06-28 10:38:27:3827] [[32minfo[39m]: [32m✅ Seeded 20 cities.[39m
+[2026-06-28 10:38:27:3827] [[32minfo[39m]: [32m🏪 Generating properties for all cities...[39m
+[2026-06-28 10:38:27:3827] [[31merror[39m]: [31mDatabase seeding failed: Property validation failed: footTraffic: Path `footTraffic` (103) is more than maximum allowed value (100).[39m
+[2026-06-28 10:38:27:3827] [[32minfo[39m]: [32mStarting BullMQ Workers...[39m
+[2026-06-28 10:38:27:3827] [[32minfo[39m]: [32mBullMQ simulation worker pool initialized.[39m
+[2026-06-28 10:38:27:3827] [[32minfo[39m]: [32mInitializing BullMQ repeatable jobs scheduler...[39m
+[2026-06-28 10:38:27:3827] [[32minfo[39m]: [32mRedis connected successfully and is ready.[39m
+[2026-06-29 08:45:52:4552] [[32minfo[39m]: [32mConnecting to MongoDB...[39m
+[2026-06-29 08:45:54:4554] [[32minfo[39m]: [32mMongoDB connected successfully.[39m
+[2026-06-29 08:45:54:4554] [[32minfo[39m]: [32mConnecting to Redis...[39m
+[2026-06-29 08:45:54:4554] [[32minfo[39m]: [32mRedis connecting...[39m
+[2026-06-29 08:45:54:4554] [[32minfo[39m]: [32mRedis connected successfully and is ready.[39m
+[2026-06-29 08:45:55:4555] [[32minfo[39m]: [32mCities already seeded (20 found). Skipping.[39m
+[2026-06-29 08:45:55:4555] [[32minfo[39m]: [32m📦 Seeding supply items...[39m
+[2026-06-29 08:45:56:4556] [[32minfo[39m]: [32m✅ Seeded 52 supply items.[39m
+[2026-06-29 08:45:56:4556] [[32minfo[39m]: [32mStarting BullMQ Workers...[39m
+[2026-06-29 08:45:56:4556] [[32minfo[39m]: [32mBullMQ simulation worker pool initialized.[39m
+[2026-06-29 08:45:56:4556] [[32minfo[39m]: [32mInitializing BullMQ repeatable jobs scheduler...[39m
+[2026-06-29 08:45:58:4558] [[32minfo[39m]: [32mBullMQ repeatable jobs scheduled successfully.[39m
+[2026-06-29 08:45:58:4558] [[32minfo[39m]: [32m🚀 Server running in development mode on port 4000[39m
+[2026-06-29 09:03:34:334] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
+[2026-06-29 09:47:44:4744] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
+[2026-06-29 09:47:44:4744] [[31merror[39m]: [31mError: Invalid or expired authentication token[39m
